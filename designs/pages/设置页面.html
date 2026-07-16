@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - Craft Launcher</title>
+    <style id="theme-vars">
+:root {
+  /* Brand */
+  --color-bg-brand: #4b3fe3;
+  --color-bg-brand-hover: #6a6fff;
+  --color-bg-brand-active: #3f31c6;
+  --color-bg-brand-disabled: rgba(75, 63, 227, 0.22);
+  --color-bg-brand-popup: rgba(170, 183, 255, 0.36);
+  --color-primary: #4b3fe3;
+  --color-primary-hover: #6a6fff;
+  --color-primary-disabled: rgba(75, 63, 227, 0.22);
+  --color-primary-soft: rgba(170, 183, 255, 0.36);
+  --color-accent: #4b3fe3;
+
+  /* Background */
+  --color-bg-base-default: #ffffff;
+  --color-bg-base-secondary: #f5f5f5;
+  --color-bg-base-tertiary: #e5e5e5;
+  --color-bg-overlay-l1: rgba(115, 115, 115, 0.08);
+  --color-bg-overlay-l2: rgba(115, 115, 115, 0.12);
+  --color-bg-overlay-l3: rgba(115, 115, 115, 0.16);
+  --color-bg-overlay-l4: rgba(115, 115, 115, 0.2);
+  --color-bg-white: #ffffff;
+  --color-bg-menu: #ffffff;
+  --color-bg-tooltip: #ffffff;
+  --color-bg-invert: #262626;
+  --color-bg-invert-hover: #404040;
+  --color-bg-invert-active: #171717;
+  --color-bg-invert-disabled: rgba(115, 115, 115, 0.2);
+  --color-background: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-surface-variant: #e5e5e5;
+  --color-overlay-1: rgba(115, 115, 115, 0.08);
+  --color-overlay-2: rgba(115, 115, 115, 0.12);
+  --color-overlay-3: rgba(115, 115, 115, 0.16);
+  --color-overlay-4: rgba(115, 115, 115, 0.2);
+  --color-card: #f5f5f5;
+  --color-tooltip: #ffffff;
+  --color-menu: #ffffff;
+
+  /* Icon */
+  --color-icon-default: #262626;
+  --color-icon-default-hover: #171717;
+  --color-icon-secondary: #404040;
+  --color-icon-tertiary: #737373;
+  --color-icon-disabled: #a1a1a1;
+  --color-icon-onbrand: #ffffff;
+  --color-icon-brand: #4b3fe3;
+  --color-icon-brand-hover: #6a6fff;
+
+  /* Text */
+  --color-text-default: #171717;
+  --color-text-default-hover: #262626;
+  --color-text-secondary: #404040;
+  --color-text-tertiary: #737373;
+  --color-text-disabled: #a1a1a1;
+  --color-text-onbrand: #ffffff;
+  --color-text-brand: #4b3fe3;
+  --color-text-brand-hover: #6a6fff;
+  --color-foreground: #171717;
+  --color-foreground-hover: #262626;
+  --color-on-surface: #171717;
+  --color-on-surface-variant: #404040;
+  --color-muted-foreground: #404040;
+  --color-disabled-foreground: #a1a1a1;
+  --color-on-primary: #ffffff;
+
+  /* Border */
+  --color-border-neutral-l1: rgba(115, 115, 115, 0.12);
+  --color-border-neutral-l2: rgba(115, 115, 115, 0.18);
+  --color-border-neutral-l3: rgba(115, 115, 115, 0.36);
+  --color-border-brand: #4b3fe3;
+  --color-border: rgba(115, 115, 115, 0.12);
+  --color-border-strong: rgba(115, 115, 115, 0.18);
+  --color-border-stronger: rgba(115, 115, 115, 0.36);
+  --color-outline: rgba(115, 115, 115, 0.12);
+
+  /* Status */
+  --color-status-primary: #2f74ff;
+  --color-status-success: #15a877;
+  --color-status-alert: #fea900;
+  --color-status-warning: #e27900;
+  --color-status-error: #e8463a;
+  --color-success: #15a877;
+  --color-error: #e8463a;
+  --color-warning: #e27900;
+  --color-info: #2f74ff;
+
+  /* Brand palette */
+  --color-brand-50: #f2f7ff;
+  --color-brand-100: #e5eaff;
+  --color-brand-200: #cfd8ff;
+  --color-brand-300: #aab7ff;
+  --color-brand-400: #8894ff;
+  --color-brand-500: #6a6fff;
+  --color-brand-600: #4b3fe3;
+  --color-brand-700: #3f31c6;
+  --color-brand-800: #2c2290;
+  --color-brand-900: #1a1759;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 16px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* Font */
+  --font-family: "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: "SF Pro", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      /* Custom scrollbar for main content */
+      .settings-scroll::-webkit-scrollbar { width: 6px; }
+      .settings-scroll::-webkit-scrollbar-track { background: transparent; }
+      .settings-scroll::-webkit-scrollbar-thumb { background: rgba(115,115,115,0.2); border-radius: 3px; }
+      .settings-scroll::-webkit-scrollbar-thumb:hover { background: rgba(115,115,115,0.36); }
+
+      /* Toggle switch */
+      .toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+      .toggle-switch input { opacity: 0; width: 0; height: 0; }
+      .toggle-track {
+        position: absolute; inset: 0; background: #d4d4d4; border-radius: 999px;
+        cursor: pointer; transition: background 0.2s;
+      }
+      .toggle-track::after {
+        content: ''; position: absolute; top: 2px; left: 2px;
+        width: 20px; height: 20px; background: white; border-radius: 999px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15); transition: transform 0.2s;
+      }
+      .toggle-switch input:checked + .toggle-track { background: #4b3fe3; }
+      .toggle-switch input:checked + .toggle-track::after { transform: translateX(20px); }
+      .toggle-switch input:focus-visible + .toggle-track { outline: 2px solid #aab7ff; outline-offset: 2px; }
+
+      /* Range slider */
+      input[type="range"] {
+        -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+        background: #e5e5e5; border-radius: 999px; outline: none; cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; appearance: none; width: 18px; height: 18px;
+        background: #4b3fe3; border-radius: 999px; border: 2px solid white;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2); cursor: pointer;
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 18px; height: 18px; background: #4b3fe3; border-radius: 999px;
+        border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2); cursor: pointer;
+      }
+
+      /* Sidebar nav item */
+      .nav-item {
+        display: flex; align-items: center; gap: 10px; padding: 9px 14px;
+        border-radius: 8px; font-size: 14px; font-weight: 400;
+        color: #404040; cursor: pointer; transition: all 0.15s;
+        text-decoration: none; width: 100%;
+      }
+      .nav-item:hover { background: rgba(115,115,115,0.08); color: #171717; }
+      .nav-item.active {
+        background: rgba(75,63,227,0.08); color: #4b3fe3; font-weight: 500;
+      }
+
+      /* Theme preview card */
+      .theme-card {
+        border: 2px solid rgba(115,115,115,0.12); border-radius: 12px;
+        padding: 12px; cursor: pointer; transition: all 0.2s; width: 140px;
+      }
+      .theme-card:hover { border-color: rgba(115,115,115,0.36); }
+      .theme-card.selected { border-color: #4b3fe3; box-shadow: 0 0 0 3px rgba(75,63,227,0.15); }
+
+      /* Form elements base */
+      .form-input, .form-select, .form-textarea {
+        width: 100%; padding: 8px 12px; border: 1px solid rgba(115,115,115,0.18);
+        border-radius: 8px; font-size: 14px; font-family: var(--font-family);
+        color: #171717; background: #ffffff; outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+      }
+      .form-input:focus, .form-select:focus, .form-textarea:focus {
+        border-color: #4b3fe3; box-shadow: 0 0 0 3px rgba(75,63,227,0.1);
+      }
+      .form-input::placeholder, .form-textarea::placeholder { color: #a1a1a1; }
+      .form-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; -webkit-appearance: none; appearance: none; }
+      .form-textarea { resize: vertical; min-height: 72px; line-height: 1.5; }
+
+      /* Radio custom */
+      .radio-custom { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; color: #404040; }
+      .radio-custom input[type="radio"] {
+        -webkit-appearance: none; appearance: none; width: 18px; height: 18px;
+        border: 2px solid rgba(115,115,115,0.36); border-radius: 999px;
+        background: white; cursor: pointer; transition: all 0.15s; flex-shrink: 0;
+      }
+      .radio-custom input[type="radio"]:checked { border-color: #4b3fe3; background: white; }
+      .radio-custom input[type="radio"]:checked::after {
+        content: ''; display: block; width: 10px; height: 10px; border-radius: 999px;
+        background: #4b3fe3; margin: 2px;
+      }
+      .radio-custom input[type="radio"]:focus-visible { outline: 2px solid #aab7ff; outline-offset: 2px; }
+
+      /* Settings card section */
+      .settings-card {
+        background: #ffffff; border: 1px solid rgba(115,115,115,0.12);
+        border-radius: 16px; padding: 24px; margin-bottom: 16px;
+      }
+      .settings-card-title {
+        font-size: 15px; font-weight: 600; color: #171717; margin-bottom: 20px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .settings-card-title svg { width: 18px; height: 18px; color: #4b3fe3; }
+      .setting-row {
+        display: flex; align-items: flex-start; justify-content: space-between;
+        gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(115,115,115,0.08);
+      }
+      .setting-row:last-child { border-bottom: none; padding-bottom: 0; }
+      .setting-row:first-of-type { padding-top: 0; }
+      .setting-label { font-size: 14px; font-weight: 500; color: #171717; }
+      .setting-desc { font-size: 12px; color: #737373; margin-top: 2px; }
+      .setting-control { flex-shrink: 0; min-width: 280px; }
+      .setting-control-full { flex-shrink: 0; width: 100%; margin-top: 8px; }
+
+      /* Button */
+      .btn-browse {
+        padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+        color: #4b3fe3; background: rgba(75,63,227,0.06); border: 1px solid rgba(75,63,227,0.2);
+        cursor: pointer; transition: all 0.15s; white-space: nowrap;
+        font-family: var(--font-family);
+      }
+      .btn-browse:hover { background: rgba(75,63,227,0.12); }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="font-family: var(--font-family); background: #f5f5f5; color: #171717;">
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- ========== LEFT SIDEBAR ========== -->
+        <aside class="w-[260px] flex-shrink-0 flex flex-col bg-[#262626] text-white" style="font-family: var(--font-family);">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 px-6 py-5">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #4b3fe3, #6a6fff); color: white;">MC</div>
+                <div>
+                    <div class="font-semibold text-[15px] text-white tracking-tight" style="font-family: var(--font-family-heading);">Craft Launcher</div>
+                    <div class="text-[11px] text-[rgba(255,255,255,0.4)]">v3.2.1</div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-3 mt-2 space-y-1">
+                <a data-dom-id="nav-home" href="#" class="nav-item" style="color: rgba(255,255,255,0.6);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>主页</span>
+                </a>
+                <a data-dom-id="nav-mods" href="#" class="nav-item" style="color: rgba(255,255,255,0.6);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span>模组中心</span>
+                </a>
+                <a data-dom-id="nav-versions" href="#" class="nav-item" style="color: rgba(255,255,255,0.6);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+                    <span>版本管理</span>
+                </a>
+                <a href="#" class="nav-item active" style="color: rgba(255,255,255,0.6);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span>设置</span>
+                </a>
+            </nav>
+
+            <!-- Bottom user area -->
+            <div class="px-4 pb-4">
+                <div class="flex items-center gap-3 px-3 py-3 rounded-xl cursor-pointer" style="background: rgba(255,255,255,0.06);">
+                    <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #3f31c6, #6a6fff);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-[13px] font-medium text-white truncate">Steve_Player</div>
+                        <div class="text-[11px] text-[rgba(255,255,255,0.4)]">正版账户</div>
+                    </div>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+
+            <!-- Header -->
+            <header class="flex items-center justify-between px-8 py-5 flex-shrink-0" style="background: #ffffff; border-bottom: 1px solid rgba(115,115,115,0.12);">
+                <h1 class="text-[22px] font-semibold tracking-tight" style="font-family: var(--font-family-heading); color: #171717;">设置</h1>
+                <button class="btn-browse" style="color: #737373; background: transparent; border-color: rgba(115,115,115,0.18);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1" style="vertical-align: -2px;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                    恢复默认
+                </button>
+            </header>
+
+            <!-- Scrollable content -->
+            <div class="flex-1 overflow-y-auto settings-scroll px-8 py-6">
+
+                <!-- ===== Section A: Java 运行环境 ===== -->
+                <div class="settings-card">
+                    <div class="settings-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Java 运行环境
+                    </div>
+
+                    <!-- Java Path -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">Java 路径</div>
+                            <div class="setting-desc">选择 Java 运行时安装路径</div>
+                        </div>
+                        <div class="setting-control flex gap-2">
+                            <input type="text" class="form-input" value="C:\Program Files\Java\jdk-21" readonly>
+                            <button class="btn-browse">浏览</button>
+                        </div>
+                    </div>
+
+                    <!-- Memory Allocation -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">内存分配</div>
+                            <div class="setting-desc">为 Minecraft 分配的最大内存</div>
+                        </div>
+                        <div class="setting-control" style="min-width: 320px;">
+                            <div class="flex items-center gap-3">
+                                <span class="text-[12px]" style="color: #737373;">2 GB</span>
+                                <input type="range" min="2048" max="16384" step="512" value="4096" class="flex-1">
+                                <span class="text-[14px] font-medium" style="color: #4b3fe3; min-width: 64px; text-align: right;" id="memoryValue">4096 MB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JVM Parameters -->
+                    <div class="setting-row" style="flex-direction: column; gap: 8px;">
+                        <div>
+                            <div class="setting-label">JVM 参数</div>
+                            <div class="setting-desc">自定义 Java 虚拟机启动参数</div>
+                        </div>
+                        <div class="setting-control-full">
+                            <textarea class="form-textarea" rows="3" style="font-family: var(--font-family-mono); font-size: 13px;">-Xmx4G -XX:+UseG1GC</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Section B: 游戏设置 ===== -->
+                <div class="settings-card">
+                    <div class="settings-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="16" cy="10" r="0.5" fill="currentColor"/><circle cx="19" cy="12" r="0.5" fill="currentColor"/></svg>
+                        游戏设置
+                    </div>
+
+                    <!-- Resolution -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">游戏窗口分辨率</div>
+                            <div class="setting-desc">设置游戏启动时的窗口大小</div>
+                        </div>
+                        <div class="setting-control">
+                            <select class="form-select">
+                                <option>1280 x 720</option>
+                                <option>1366 x 768</option>
+                                <option>1600 x 900</option>
+                                <option selected>1920 x 1080 (全屏)</option>
+                                <option>2560 x 1440</option>
+                                <option>3840 x 2160</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Launcher close behavior -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">启动器关闭行为</div>
+                            <div class="setting-desc">关闭启动器窗口时的默认操作</div>
+                        </div>
+                        <div class="setting-control flex items-center gap-6">
+                            <label class="radio-custom">
+                                <input type="radio" name="closeAction" checked>
+                                <span>最小化到托盘</span>
+                            </label>
+                            <label class="radio-custom">
+                                <input type="radio" name="closeAction">
+                                <span>直接退出</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Auto update -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">自动更新游戏</div>
+                            <div class="setting-desc">检测到新版本时自动下载安装</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-track"></span>
+                        </label>
+                    </div>
+
+                    <!-- Backup before launch -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">启动前备份存档</div>
+                            <div class="setting-desc">每次启动游戏前自动创建存档备份</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-track"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ===== Section C: 外观设置 ===== -->
+                <div class="settings-card">
+                    <div class="settings-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17" cy="15.5" r="2.5"/><circle cx="8.5" cy="15.5" r="2.5"/><path d="M3.3 12.2a7 7 0 0 1 11-5.3"/><path d="M20.7 11.8a7 7 0 0 1-11.1 5.2"/></svg>
+                        外观设置
+                    </div>
+
+                    <!-- Language -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">界面语言</div>
+                            <div class="setting-desc">启动器界面显示语言</div>
+                        </div>
+                        <div class="setting-control">
+                            <select class="form-select">
+                                <option selected>简体中文</option>
+                                <option>繁體中文</option>
+                                <option>English</option>
+                                <option>日本語</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Theme Mode - Visual Preview Cards -->
+                    <div class="setting-row" style="flex-direction: column; gap: 10px;">
+                        <div>
+                            <div class="setting-label">主题模式</div>
+                            <div class="setting-desc">选择启动器的配色方案</div>
+                        </div>
+                        <div class="setting-control-full">
+                            <div class="flex gap-4 mt-2">
+
+                                <!-- Light theme card -->
+                                <div class="theme-card" onclick="selectTheme(this)">
+                                    <div class="rounded-lg overflow-hidden" style="height: 64px; background: #ffffff; border: 1px solid #e5e5e5;">
+                                        <div class="flex h-full">
+                                            <div class="w-[28%] h-full" style="background: #f5f5f5;"></div>
+                                            <div class="flex-1 p-[6px]">
+                                                <div class="w-[60%] h-[4px] rounded-full mb-[4px]" style="background: #e5e5e5;"></div>
+                                                <div class="w-[40%] h-[3px] rounded-full mb-[4px]" style="background: #f0f0f0;"></div>
+                                                <div class="rounded-md h-[22px] mt-[4px]" style="background: #f5f5f5; border: 1px solid #e5e5e5;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-2 text-[12px] font-medium" style="color: #404040;">浅色</div>
+                                </div>
+
+                                <!-- Dark theme card (selected) -->
+                                <div class="theme-card selected" onclick="selectTheme(this)">
+                                    <div class="rounded-lg overflow-hidden" style="height: 64px; background: #1a1a1a; border: 1px solid #333;">
+                                        <div class="flex h-full">
+                                            <div class="w-[28%] h-full" style="background: #262626;"></div>
+                                            <div class="flex-1 p-[6px]">
+                                                <div class="w-[60%] h-[4px] rounded-full mb-[4px]" style="background: #404040;"></div>
+                                                <div class="w-[40%] h-[3px] rounded-full mb-[4px]" style="background: #333;"></div>
+                                                <div class="rounded-md h-[22px] mt-[4px]" style="background: #262626; border: 1px solid #404040;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-2 text-[12px] font-medium" style="color: #4b3fe3;">深色</div>
+                                    <div class="flex justify-center mt-1">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4b3fe3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                </div>
+
+                                <!-- System theme card -->
+                                <div class="theme-card" onclick="selectTheme(this)">
+                                    <div class="rounded-lg overflow-hidden" style="height: 64px; border: 1px solid #e5e5e5;">
+                                        <div class="flex h-full">
+                                            <div class="w-[28%] h-full" style="background: linear-gradient(180deg, #f5f5f5 50%, #262626 50%);"></div>
+                                            <div class="flex-1 p-[6px]" style="background: linear-gradient(180deg, #ffffff 50%, #1a1a1a 50%);">
+                                                <div class="w-[60%] h-[4px] rounded-full mb-[4px]" style="background: linear-gradient(180deg, #e5e5e5 50%, #404040 50%);"></div>
+                                                <div class="w-[40%] h-[3px] rounded-full mb-[4px]" style="background: linear-gradient(180deg, #f0f0f0 50%, #333 50%);"></div>
+                                                <div class="rounded-md h-[22px] mt-[4px]" style="background: linear-gradient(180deg, #f5f5f5 50%, #262626 50%); border: 1px solid #e5e5e5;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-2 text-[12px] font-medium" style="color: #404040;">跟随系统</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Position -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">侧边栏位置</div>
+                            <div class="setting-desc">启动器侧边导航栏的显示位置</div>
+                        </div>
+                        <div class="setting-control flex items-center gap-6">
+                            <label class="radio-custom">
+                                <input type="radio" name="sidebarPos" checked>
+                                <span>左侧</span>
+                            </label>
+                            <label class="radio-custom">
+                                <input type="radio" name="sidebarPos">
+                                <span>右侧</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Section D: 下载设置 ===== -->
+                <div class="settings-card">
+                    <div class="settings-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        下载设置
+                    </div>
+
+                    <!-- Download Source -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">下载源</div>
+                            <div class="setting-desc">Minecraft 文件下载镜像源</div>
+                        </div>
+                        <div class="setting-control">
+                            <select class="form-select">
+                                <option selected>官方源 (Mojang)</option>
+                                <option>BMCLAPI (镜像)</option>
+                                <option>MCBBS (镜像)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Speed Limit -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">下载速度限制</div>
+                            <div class="setting-desc">设为 0 表示不限制下载速度</div>
+                        </div>
+                        <div class="setting-control flex items-center gap-2">
+                            <input type="text" class="form-input" value="0" style="width: 80px; text-align: center;">
+                            <span class="text-[13px]" style="color: #737373;">MB/s</span>
+                            <span class="text-[12px]" style="color: #a1a1a1;">(无限制)</span>
+                        </div>
+                    </div>
+
+                    <!-- Concurrent Downloads -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">并发下载数</div>
+                            <div class="setting-desc">同时下载的最大文件数量</div>
+                        </div>
+                        <div class="setting-control">
+                            <select class="form-select">
+                                <option>1</option>
+                                <option>2</option>
+                                <option selected>3</option>
+                                <option>5</option>
+                                <option>8</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Download Directory -->
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">下载目录</div>
+                            <div class="setting-desc">游戏文件和资源包的存储路径</div>
+                        </div>
+                        <div class="setting-control flex gap-2">
+                            <input type="text" class="form-input" value="C:\Users\Steve\.minecraft" readonly>
+                            <button class="btn-browse">浏览</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Section E: 关于 ===== -->
+                <div class="settings-card">
+                    <div class="settings-card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        关于
+                    </div>
+
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">启动器版本</div>
+                        </div>
+                        <div class="text-[14px]" style="color: #737373;">v3.2.1</div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div>
+                            <div class="setting-label">Minecraft 版本</div>
+                        </div>
+                        <div class="text-[14px]" style="color: #737373;">1.21.4</div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div class="flex items-center gap-4">
+                            <button class="btn-browse">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1" style="vertical-align: -2px;"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                                检查更新
+                            </button>
+                            <a href="#" class="text-[13px] font-medium" style="color: #4b3fe3; text-decoration: none;">开源许可</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== Bottom Action Bar ===== -->
+            <div class="flex-shrink-0 px-8 py-5 flex items-center justify-center gap-4" style="background: #ffffff; border-top: 1px solid rgba(115,115,115,0.12);">
+                <button class="text-[14px] font-medium cursor-pointer bg-transparent border-none" style="color: #737373; padding: 10px 24px; font-family: var(--font-family);">取消</button>
+                <button class="text-[14px] font-medium cursor-pointer text-white border-none" style="background: #4b3fe3; padding: 10px 40px; border-radius: 10px; font-family: var(--font-family); box-shadow: 0 2px 8px rgba(75,63,227,0.3); transition: background 0.15s;">保存设置</button>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Theme card selection
+        function selectTheme(card) {
+            document.querySelectorAll('.theme-card').forEach(c => {
+                c.classList.remove('selected');
+                const check = c.querySelector('.flex.justify-center');
+                if (check) check.remove();
+                const label = c.querySelector('.text-center');
+                if (label) label.style.color = '#404040';
+            });
+            card.classList.add('selected');
+            const label = card.querySelector('.text-center');
+            if (label) label.style.color = '#4b3fe3';
+            if (!card.querySelector('.flex.justify-center')) {
+                const check = document.createElement('div');
+                check.className = 'flex justify-center mt-1';
+                check.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4b3fe3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+                card.appendChild(check);
+            }
+        }
+
+        // Memory slider live update
+        const memorySlider = document.querySelector('input[type="range"]');
+        const memoryDisplay = document.getElementById('memoryValue');
+        if (memorySlider && memoryDisplay) {
+            memorySlider.addEventListener('input', function() {
+                memoryDisplay.textContent = this.value + ' MB';
+            });
+        }
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

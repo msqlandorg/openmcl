@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版本管理 - Craft Launcher</title>
+    <style id="theme-vars">
+:root {
+  /* bg-brand */
+  --color-bg-brand: #4b3fe3;
+  --color-bg-brand-hover: #6a6fff;
+  --color-bg-brand-active: #3f31c6;
+  --color-bg-brand-disabled: rgba(75, 63, 227, 0.22);
+  --color-bg-brand-popup: rgba(170, 183, 255, 0.36);
+  --color-primary: #4b3fe3;
+  --color-primary-hover: #6a6fff;
+  --color-primary-disabled: rgba(75, 63, 227, 0.22);
+  --color-primary-soft: rgba(170, 183, 255, 0.36);
+  --color-accent: #4b3fe3;
+  /* background & surface */
+  --color-background: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-surface-variant: #e5e5e5;
+  --color-card: #f5f5f5;
+  --color-overlay-1: rgba(115, 115, 115, 0.08);
+  --color-overlay-2: rgba(115, 115, 115, 0.12);
+  --color-overlay-3: rgba(115, 115, 115, 0.16);
+  --color-overlay-4: rgba(115, 115, 115, 0.2);
+  /* text */
+  --color-foreground: #171717;
+  --color-foreground-hover: #262626;
+  --color-on-surface: #171717;
+  --color-on-surface-variant: #404040;
+  --color-muted-foreground: #404040;
+  --color-disabled-foreground: #a1a1a1;
+  --color-on-primary: #ffffff;
+  /* border */
+  --color-border: rgba(115, 115, 115, 0.12);
+  --color-border-strong: rgba(115, 115, 115, 0.18);
+  --color-border-stronger: rgba(115, 115, 115, 0.36);
+  --color-border-contrast: #000000;
+  --color-outline: rgba(115, 115, 115, 0.12);
+  /* status */
+  --color-info: #2f74ff;
+  --color-success: #15a877;
+  --color-warning: #e27900;
+  --color-error: #e8463a;
+  --color-error-soft: rgba(232, 70, 58, 0.12);
+  /* brand palette */
+  --color-brand-50: #f2f7ff;
+  --color-brand-100: #e5eaff;
+  --color-brand-200: #cfd8ff;
+  --color-brand-300: #aab7ff;
+  --color-brand-400: #8894ff;
+  --color-brand-500: #6a6fff;
+  --color-brand-600: #4b3fe3;
+  --color-brand-700: #3f31c6;
+  --color-brand-800: #2c2290;
+  --color-brand-900: #1a1759;
+  /* brand grey */
+  --color-brand-grey-100: #f5f5f5;
+  --color-brand-grey-200: #e5e5e5;
+  --color-brand-grey-300: #d4d4d4;
+  --color-brand-grey-400: #a1a1a1;
+  --color-brand-grey-500: #737373;
+  --color-brand-grey-600: #525252;
+  --color-brand-grey-700: #404040;
+  --color-brand-grey-800: #262626;
+  --color-brand-grey-900: #171717;
+  /* icon */
+  --color-icon-default: #262626;
+  --color-icon-secondary: #404040;
+  --color-icon-tertiary: #737373;
+  --color-icon-disabled: #a1a1a1;
+  --color-icon-brand: #4b3fe3;
+  /* font family */
+  --font-family-default: "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: "SF Pro", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--color-background);
+    --color-foreground: var(--color-foreground);
+    --color-card: var(--color-card);
+    --color-primary: var(--color-primary);
+    --color-primary-hover: var(--color-primary-hover);
+    --color-primary-soft: var(--color-primary-soft);
+    --color-muted-foreground: var(--color-muted-foreground);
+    --color-border: var(--color-border);
+    --color-border-strong: var(--color-border-strong);
+    --color-surface: var(--color-surface);
+    --color-surface-variant: var(--color-surface-variant);
+    --color-overlay-1: var(--color-overlay-1);
+    --color-overlay-2: var(--color-overlay-2);
+    --color-success: var(--color-success);
+    --color-warning: var(--color-warning);
+    --color-error: var(--color-error);
+    --color-info: var(--color-info);
+    --color-brand-600: var(--color-brand-600);
+    --color-brand-500: var(--color-brand-500);
+    --color-brand-100: var(--color-brand-100);
+    --color-brand-50: var(--color-brand-50);
+    --color-brand-300: var(--color-brand-300);
+    --color-brand-700: var(--color-brand-700);
+    --color-brand-800: var(--color-brand-800);
+    --color-brand-900: var(--color-brand-900);
+    --color-brand-grey-100: var(--color-brand-grey-100);
+    --color-brand-grey-200: var(--color-brand-grey-200);
+    --color-brand-grey-300: var(--color-brand-grey-300);
+    --color-brand-grey-400: var(--color-brand-grey-400);
+    --color-brand-grey-500: var(--color-brand-grey-500);
+    --color-brand-grey-700: var(--color-brand-grey-700);
+    --color-brand-grey-800: var(--color-brand-grey-800);
+    --color-brand-grey-900: var(--color-brand-grey-900);
+    --color-icon-default: var(--color-icon-default);
+    --color-icon-secondary: var(--color-icon-secondary);
+    --color-icon-tertiary: var(--color-icon-tertiary);
+    --color-icon-brand: var(--color-icon-brand);
+    --color-on-primary: var(--color-on-primary);
+    --color-on-surface: var(--color-on-surface);
+    --color-on-surface-variant: var(--color-on-surface-variant);
+    --color-disabled-foreground: var(--color-disabled-foreground);
+    --color-error-soft: var(--color-error-soft);
+    --radius-xs: var(--radius-xs);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+    --radius-12: var(--radius-12);
+    --radius-16: var(--radius-16);
+    --radius-20: var(--radius-20);
+    --radius-24: var(--radius-24);
+    --radius-full: var(--radius-full);
+  }
+  @layer base {
+    body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-family-default); }
+    td, th { word-break: break-all; word-break: auto-phrase; }
+    th { white-space: nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      /* Animated gradient border for active instance */
+      @keyframes gradientBorder {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .active-instance-card {
+        position: relative;
+        border-radius: var(--radius-12);
+        background: var(--color-background);
+      }
+      .active-instance-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-12);
+        padding: 2px;
+        background: linear-gradient(135deg, #4b3fe3, #8894ff, #6a6fff, #aab7ff, #4b3fe3);
+        background-size: 300% 300%;
+        animation: gradientBorder 4s ease infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      /* Static left accent border for normal cards */
+      .instance-card {
+        position: relative;
+        border-left: 3px solid var(--color-brand-600);
+      }
+
+      /* Progress bar animation */
+      @keyframes memoryPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+      .memory-bar-fill {
+        animation: memoryPulse 2s ease-in-out infinite;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main class="flex min-h-screen">
+
+      <!-- Left Sidebar -->
+      <aside class="w-[260px] min-h-screen flex flex-col border-r" style="background: var(--color-surface); border-color: var(--color-border);">
+        <!-- Logo -->
+        <div class="flex items-center gap-3 px-5 py-5">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background: var(--color-primary);">
+            MC
+          </div>
+          <span class="font-semibold text-base" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">Craft Launcher</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex flex-col gap-1 px-3 mt-2">
+          <a data-dom-id="nav-home" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">
+            <i data-lucide="home" class="w-[18px] h-[18px]"></i>
+            <span>主页</span>
+          </a>
+          <a data-dom-id="nav-mods" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">
+            <i data-lucide="puzzle" class="w-[18px] h-[18px]"></i>
+            <span>模组中心</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150" style="background: var(--color-primary-soft); color: var(--color-primary);">
+            <i data-lucide="layers" class="w-[18px] h-[18px]"></i>
+            <span>版本管理</span>
+          </a>
+          <a data-dom-id="nav-settings" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">
+            <i data-lucide="settings" class="w-[18px] h-[18px]"></i>
+            <span>设置</span>
+          </a>
+        </nav>
+
+        <!-- Spacer -->
+        <div class="flex-1"></div>
+
+        <!-- User section -->
+        <div class="px-4 pb-5 pt-4 border-t flex items-center gap-3" style="border-color: var(--color-border);">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium text-white" style="background: linear-gradient(135deg, #4b3fe3, #6a6fff);">
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium truncate" style="color: var(--color-on-surface);">Steve_Player</div>
+            <div class="text-xs truncate" style="color: var(--color-muted-foreground);">正版已验证</div>
+          </div>
+          <button class="p-1.5 rounded-md transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-icon-tertiary);">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col min-h-screen overflow-auto">
+
+        <!-- Header -->
+        <header class="flex items-center justify-between px-8 py-6 border-b" style="border-color: var(--color-border);">
+          <div>
+            <h1 class="text-2xl font-semibold" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">版本管理</h1>
+            <p class="text-sm mt-1" style="color: var(--color-muted-foreground);">管理你的 Minecraft 实例与版本配置</p>
+          </div>
+          <button class="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-150 hover:opacity-90 hover:shadow-md cursor-pointer" style="background: var(--color-primary);">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            新建实例
+          </button>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 p-8 overflow-auto">
+          <div class="flex gap-6 max-w-[1400px]">
+
+            <!-- Left: Instance List -->
+            <div class="flex-1 min-w-0 space-y-6">
+
+              <!-- Active Instance Card -->
+              <div class="active-instance-card p-6 shadow-sm" style="box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                <div class="flex items-start justify-between mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: var(--color-primary-soft);">
+                      <i data-lucide="swords" class="w-6 h-6" style="color: var(--color-primary);"></i>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <h2 class="text-lg font-semibold" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">生存世界 1.21.4</h2>
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium text-white" style="background: var(--color-success);">
+                          <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                          运行中
+                        </span>
+                      </div>
+                      <div class="flex items-center gap-2 mt-1.5">
+                        <span class="px-2 py-0.5 rounded text-xs font-medium" style="background: var(--color-surface-variant); color: var(--color-on-surface-variant);">1.21.4</span>
+                        <span class="px-2 py-0.5 rounded text-xs font-medium" style="background: var(--color-primary-soft); color: var(--color-primary);">Fabric 0.16.9</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Memory Progress -->
+                <div class="mb-4">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs font-medium" style="color: var(--color-muted-foreground);">内存使用</span>
+                    <span class="text-xs font-semibold" style="color: var(--color-on-surface-variant);">4GB / 8GB</span>
+                  </div>
+                  <div class="w-full h-2 rounded-full overflow-hidden" style="background: var(--color-surface-variant);">
+                    <div class="memory-bar-fill h-full rounded-full" style="width: 50%; background: linear-gradient(90deg, #4b3fe3, #6a6fff);"></div>
+                  </div>
+                </div>
+
+                <!-- Info & Actions -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-xs" style="color: var(--color-muted-foreground);">
+                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                    上次运行: 2小时前
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button class="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-150 hover:opacity-90 cursor-pointer" style="background: var(--color-success);">
+                      <i data-lucide="play" class="w-4 h-4"></i>
+                      启动
+                    </button>
+                    <button class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border transition-all duration-150 hover:bg-[var(--color-overlay-1)] cursor-pointer" style="border-color: var(--color-border-strong); color: var(--color-on-surface-variant);">
+                      <i data-lucide="folder-open" class="w-4 h-4"></i>
+                      打开文件夹
+                    </button>
+                    <button class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border transition-all duration-150 hover:bg-[var(--color-overlay-1)] cursor-pointer" style="border-color: var(--color-border-strong); color: var(--color-on-surface-variant);">
+                      <i data-lucide="puzzle" class="w-4 h-4"></i>
+                      管理模组
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Instance List Header -->
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-semibold" style="color: var(--color-on-surface);">所有实例</h3>
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs" style="border-color: var(--color-border); color: var(--color-muted-foreground);">
+                    <i data-lucide="search" class="w-3.5 h-3.5"></i>
+                    搜索实例...
+                  </div>
+                  <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-muted-foreground);">
+                    <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i>
+                    排序
+                  </button>
+                </div>
+              </div>
+
+              <!-- Instance Cards List -->
+              <div class="space-y-3">
+
+                <!-- Instance 1: 创造模式 -->
+                <div class="instance-card rounded-xl p-4 border transition-all duration-150 hover:shadow-md cursor-pointer" style="background: var(--color-background); border-color: var(--color-border);">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 min-w-0 flex-1">
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: var(--color-surface-variant);">
+                        <i data-lucide="pickaxe" class="w-5 h-5" style="color: var(--color-icon-secondary);"></i>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2">
+                          <span class="font-medium text-sm truncate" style="color: var(--color-on-surface);">创造模式</span>
+                          <span class="flex-shrink-0 w-2 h-2 rounded-full" style="background: var(--color-success);"></span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-1">
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: var(--color-surface-variant); color: var(--color-on-surface-variant);">1.21.4</span>
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: var(--color-primary-soft); color: var(--color-primary);">Fabric 0.16.9</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">上次运行: 1天前</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">总时长: 128小时</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-shrink-0 ml-4">
+                      <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white transition-all hover:opacity-90 cursor-pointer" style="background: var(--color-primary);">
+                        <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                        启动
+                      </button>
+                      <button class="p-1.5 rounded-lg transition-colors hover:bg-[var(--color-overlay-1)] cursor-pointer" style="color: var(--color-icon-tertiary);">
+                        <i data-lucide="ellipsis" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Instance 2: 红石测试服 -->
+                <div class="instance-card rounded-xl p-4 border transition-all duration-150 hover:shadow-md cursor-pointer" style="background: var(--color-background); border-color: var(--color-border);">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 min-w-0 flex-1">
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: var(--color-surface-variant);">
+                        <i data-lucide="zap" class="w-5 h-5" style="color: var(--color-icon-secondary);"></i>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2">
+                          <span class="font-medium text-sm truncate" style="color: var(--color-on-surface);">红石测试服</span>
+                          <span class="flex-shrink-0 w-2 h-2 rounded-full" style="background: var(--color-warning);"></span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-1">
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: var(--color-surface-variant); color: var(--color-on-surface-variant);">1.21.3</span>
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: #fff6e5; color: #e27900;">Forge 52.0.28</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">上次运行: 3天前</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">总时长: 56小时</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-shrink-0 ml-4">
+                      <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white transition-all hover:opacity-90 cursor-pointer" style="background: var(--color-primary);">
+                        <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                        启动
+                      </button>
+                      <button class="p-1.5 rounded-lg transition-colors hover:bg-[var(--color-overlay-1)] cursor-pointer" style="color: var(--color-icon-tertiary);">
+                        <i data-lucide="ellipsis" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Instance 3: 模组整合包 v3 -->
+                <div class="instance-card rounded-xl p-4 border transition-all duration-150 hover:shadow-md cursor-pointer" style="background: var(--color-background); border-color: var(--color-border);">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 min-w-0 flex-1">
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: var(--color-surface-variant);">
+                        <i data-lucide="package" class="w-5 h-5" style="color: var(--color-icon-secondary);"></i>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2">
+                          <span class="font-medium text-sm truncate" style="color: var(--color-on-surface);">模组整合包 v3</span>
+                          <span class="flex-shrink-0 w-2 h-2 rounded-full" style="background: var(--color-success);"></span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-1">
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: var(--color-surface-variant); color: var(--color-on-surface-variant);">1.21.4</span>
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: #e5f3ff; color: #2f74ff;">NeoForge 21.4.1</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">上次运行: 5天前</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">总时长: 243小时</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-shrink-0 ml-4">
+                      <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white transition-all hover:opacity-90 cursor-pointer" style="background: var(--color-primary);">
+                        <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                        启动
+                      </button>
+                      <button class="p-1.5 rounded-lg transition-colors hover:bg-[var(--color-overlay-1)] cursor-pointer" style="color: var(--color-icon-tertiary);">
+                        <i data-lucide="ellipsis" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Instance 4: 1.20.4 存档备份 -->
+                <div class="instance-card rounded-xl p-4 border transition-all duration-150 hover:shadow-md cursor-pointer" style="background: var(--color-background); border-color: var(--color-border);">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 min-w-0 flex-1">
+                      <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: var(--color-surface-variant);">
+                        <i data-lucide="archive" class="w-5 h-5" style="color: var(--color-icon-secondary);"></i>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2">
+                          <span class="font-medium text-sm truncate" style="color: var(--color-on-surface);">1.20.4 存档备份</span>
+                          <span class="flex-shrink-0 w-2 h-2 rounded-full" style="background: var(--color-disabled-foreground);"></span>
+                        </div>
+                        <div class="flex items-center gap-2 mt-1">
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: var(--color-surface-variant); color: var(--color-on-surface-variant);">1.20.4</span>
+                          <span class="px-2 py-0.5 rounded text-[11px] font-medium" style="background: var(--color-primary-soft); color: var(--color-primary);">Fabric 0.15.6</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">上次运行: 30天前</span>
+                          <span class="text-[11px]" style="color: var(--color-disabled-foreground);">|</span>
+                          <span class="text-[11px]" style="color: var(--color-muted-foreground);">总时长: 87小时</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-shrink-0 ml-4">
+                      <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white transition-all hover:opacity-90 cursor-pointer" style="background: var(--color-primary);">
+                        <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                        启动
+                      </button>
+                      <button class="p-1.5 rounded-lg transition-colors hover:bg-[var(--color-overlay-1)] cursor-pointer" style="color: var(--color-icon-tertiary);">
+                        <i data-lucide="ellipsis" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right: Release Notes Panel -->
+            <div class="w-[320px] flex-shrink-0">
+              <div class="rounded-xl border p-5 sticky top-6" style="background: var(--color-background); border-color: var(--color-border); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+
+                <!-- Panel Header -->
+                <div class="flex items-center gap-2 mb-4">
+                  <i data-lucide="sparkles" class="w-5 h-5" style="color: var(--color-primary);"></i>
+                  <h3 class="text-sm font-semibold" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">最新版本</h3>
+                </div>
+
+                <!-- Version Info -->
+                <div class="rounded-lg p-4 mb-4" style="background: var(--color-surface);">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-base font-semibold" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">Minecraft 1.21.4</span>
+                    <span class="px-2 py-0.5 rounded text-[11px] font-medium text-white" style="background: var(--color-primary);">正式版</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 text-xs" style="color: var(--color-muted-foreground);">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                    2026-07-08 发布
+                  </div>
+                </div>
+
+                <!-- Changelog -->
+                <div class="mb-4">
+                  <h4 class="text-xs font-semibold mb-3" style="color: var(--color-on-surface-variant);">更新内容</h4>
+                  <ul class="space-y-2.5">
+                    <li class="flex items-start gap-2 text-xs leading-relaxed" style="color: var(--color-muted-foreground);">
+                      <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5" style="background: var(--color-primary);"></span>
+                      新增苍白花园生物群系与嘎吱嘎吱树脂方块
+                    </li>
+                    <li class="flex items-start gap-2 text-xs leading-relaxed" style="color: var(--color-muted-foreground);">
+                      <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5" style="background: var(--color-primary);"></span>
+                      优化渲染引擎性能，提升大世界帧率稳定性
+                    </li>
+                    <li class="flex items-start gap-2 text-xs leading-relaxed" style="color: var(--color-muted-foreground);">
+                      <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5" style="background: var(--color-primary);"></span>
+                      修复物品栏同步延迟与多方块结构崩溃问题
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Action -->
+                <button class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-medium border transition-all duration-150 hover:bg-[var(--color-overlay-1)] cursor-pointer" style="border-color: var(--color-border-strong); color: var(--color-primary);">
+                  <i data-lucide="file-text" class="w-4 h-4"></i>
+                  查看完整更新日志
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

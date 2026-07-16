@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模组中心 - Craft Launcher</title>
+    <style id="theme-vars">
+:root {
+  /* bg-brand */
+  --color-bg-brand: #4b3fe3;
+  --color-bg-brand-hover: #6a6fff;
+  --color-bg-brand-active: #3f31c6;
+  --color-bg-brand-disabled: rgba(75, 63, 227, 0.22);
+  --color-bg-brand-popup: rgba(170, 183, 255, 0.36);
+  --color-primary: #4b3fe3;
+  --color-primary-hover: #6a6fff;
+  --color-primary-disabled: rgba(75, 63, 227, 0.22);
+  --color-primary-soft: rgba(170, 183, 255, 0.36);
+  --color-accent: #4b3fe3;
+  /* background & surface */
+  --color-background: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-surface-variant: #e5e5e5;
+  --color-card: #f5f5f5;
+  --color-overlay-1: rgba(115, 115, 115, 0.08);
+  --color-overlay-2: rgba(115, 115, 115, 0.12);
+  --color-overlay-3: rgba(115, 115, 115, 0.16);
+  --color-overlay-4: rgba(115, 115, 115, 0.2);
+  /* text */
+  --color-foreground: #171717;
+  --color-foreground-hover: #262626;
+  --color-on-surface: #171717;
+  --color-on-surface-variant: #404040;
+  --color-muted-foreground: #404040;
+  --color-disabled-foreground: #a1a1a1;
+  --color-on-primary: #ffffff;
+  /* border */
+  --color-border: rgba(115, 115, 115, 0.12);
+  --color-border-strong: rgba(115, 115, 115, 0.18);
+  --color-border-stronger: rgba(115, 115, 115, 0.36);
+  --color-border-contrast: #000000;
+  --color-outline: rgba(115, 115, 115, 0.12);
+  /* status */
+  --color-info: #2f74ff;
+  --color-success: #15a877;
+  --color-warning: #e27900;
+  --color-error: #e8463a;
+  --color-error-soft: rgba(232, 70, 58, 0.12);
+  /* brand palette */
+  --color-brand-50: #f2f7ff;
+  --color-brand-100: #e5eaff;
+  --color-brand-200: #cfd8ff;
+  --color-brand-300: #aab7ff;
+  --color-brand-400: #8894ff;
+  --color-brand-500: #6a6fff;
+  --color-brand-600: #4b3fe3;
+  --color-brand-700: #3f31c6;
+  --color-brand-800: #2c2290;
+  --color-brand-900: #1a1759;
+  /* brand grey */
+  --color-brand-grey-100: #f5f5f5;
+  --color-brand-grey-200: #e5e5e5;
+  --color-brand-grey-300: #d4d4d4;
+  --color-brand-grey-400: #a1a1a1;
+  --color-brand-grey-500: #737373;
+  --color-brand-grey-600: #525252;
+  --color-brand-grey-700: #404040;
+  --color-brand-grey-800: #262626;
+  --color-brand-grey-900: #171717;
+  /* icon */
+  --color-icon-default: #262626;
+  --color-icon-secondary: #404040;
+  --color-icon-tertiary: #737373;
+  --color-icon-disabled: #a1a1a1;
+  --color-icon-brand: #4b3fe3;
+  /* font family */
+  --font-family-default: "SF Pro Text", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: "SF Pro", "PingFang SC", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--color-background);
+    --color-foreground: var(--color-foreground);
+    --color-card: var(--color-card);
+    --color-primary: var(--color-primary);
+    --color-primary-hover: var(--color-primary-hover);
+    --color-primary-soft: var(--color-primary-soft);
+    --color-muted-foreground: var(--color-muted-foreground);
+    --color-border: var(--color-border);
+    --color-border-strong: var(--color-border-strong);
+    --color-surface: var(--color-surface);
+    --color-surface-variant: var(--color-surface-variant);
+    --color-overlay-1: var(--color-overlay-1);
+    --color-overlay-2: var(--color-overlay-2);
+    --color-success: var(--color-success);
+    --color-warning: var(--color-warning);
+    --color-error: var(--color-error);
+    --color-info: var(--color-info);
+    --color-brand-600: var(--color-brand-600);
+    --color-brand-500: var(--color-brand-500);
+    --color-brand-100: var(--color-brand-100);
+    --color-brand-50: var(--color-brand-50);
+    --color-brand-300: var(--color-brand-300);
+    --color-brand-700: var(--color-brand-700);
+    --color-brand-800: var(--color-brand-800);
+    --color-brand-900: var(--color-brand-900);
+    --color-brand-grey-100: var(--color-brand-grey-100);
+    --color-brand-grey-200: var(--color-brand-grey-200);
+    --color-brand-grey-300: var(--color-brand-grey-300);
+    --color-brand-grey-400: var(--color-brand-grey-400);
+    --color-brand-grey-500: var(--color-brand-grey-500);
+    --color-brand-grey-700: var(--color-brand-grey-700);
+    --color-brand-grey-800: var(--color-brand-grey-800);
+    --color-brand-grey-900: var(--color-brand-grey-900);
+    --color-icon-default: var(--color-icon-default);
+    --color-icon-secondary: var(--color-icon-secondary);
+    --color-icon-tertiary: var(--color-icon-tertiary);
+    --color-icon-brand: var(--color-icon-brand);
+    --color-on-primary: var(--color-on-primary);
+    --color-on-surface: var(--color-on-surface);
+    --color-on-surface-variant: var(--color-on-surface-variant);
+    --color-disabled-foreground: var(--color-disabled-foreground);
+    --color-error-soft: var(--color-error-soft);
+    --radius-xs: var(--radius-xs);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+    --radius-12: var(--radius-12);
+    --radius-16: var(--radius-16);
+    --radius-20: var(--radius-20);
+    --radius-24: var(--radius-24);
+    --radius-full: var(--radius-full);
+  }
+  @layer base {
+    body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-family-default); }
+    td, th { word-break: break-all; word-break: auto-phrase; }
+    th { white-space: nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+
+      /* Mod card hover lift effect */
+      .mod-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .mod-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      /* Toggle switch */
+      .toggle-switch {
+        width: 36px;
+        height: 20px;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+      }
+      .toggle-switch::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #ffffff;
+        transition: transform 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      }
+      .toggle-switch.on {
+        background: var(--color-primary);
+      }
+      .toggle-switch.on::after {
+        transform: translateX(16px);
+      }
+      .toggle-switch.off {
+        background: var(--color-brand-grey-300);
+      }
+
+      /* Star rating */
+      .star-filled { color: #f2a90c; }
+      .star-empty { color: var(--color-brand-grey-300); }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main class="flex min-h-screen">
+
+      <!-- Left Sidebar -->
+      <aside class="w-[260px] min-h-screen flex flex-col border-r" style="background: var(--color-surface); border-color: var(--color-border);">
+        <!-- Logo -->
+        <div class="flex items-center gap-3 px-5 py-5">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background: var(--color-primary);">
+            MC
+          </div>
+          <span class="font-semibold text-base" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">Craft Launcher</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex flex-col gap-1 px-3 mt-2">
+          <a data-dom-id="nav-home" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">
+            <i data-lucide="home" class="w-[18px] h-[18px]"></i>
+            <span>主页</span>
+          </a>
+          <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150" style="background: var(--color-primary-soft); color: var(--color-primary);">
+            <i data-lucide="puzzle" class="w-[18px] h-[18px]"></i>
+            <span>模组中心</span>
+          </a>
+          <a data-dom-id="nav-versions" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">
+            <i data-lucide="layers" class="w-[18px] h-[18px]"></i>
+            <span>版本管理</span>
+          </a>
+          <a data-dom-id="nav-settings" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors duration-150 hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">
+            <i data-lucide="settings" class="w-[18px] h-[18px]"></i>
+            <span>设置</span>
+          </a>
+        </nav>
+
+        <!-- Spacer -->
+        <div class="flex-1"></div>
+
+        <!-- User section -->
+        <div class="px-4 pb-5 pt-4 border-t flex items-center gap-3" style="border-color: var(--color-border);">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-medium text-white" style="background: linear-gradient(135deg, #4b3fe3, #6a6fff);">
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium truncate" style="color: var(--color-on-surface);">Steve_Player</div>
+            <div class="text-xs truncate" style="color: var(--color-muted-foreground);">正版已验证</div>
+          </div>
+          <button class="p-1.5 rounded-md transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-icon-tertiary);">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <div class="flex-1 flex min-h-screen overflow-hidden">
+
+        <!-- Center Content -->
+        <div class="flex-1 flex flex-col overflow-auto">
+
+          <!-- Header -->
+          <header class="flex items-center justify-between px-8 py-6 border-b" style="border-color: var(--color-border);">
+            <h1 class="text-xl font-semibold" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">模组中心</h1>
+            <div class="flex items-center gap-3">
+              <!-- Search Bar -->
+              <div class="flex items-center gap-2 px-4 py-2 rounded-lg border" style="background: var(--color-background); border-color: var(--color-border); min-width: 240px;">
+                <i data-lucide="search" class="w-4 h-4" style="color: var(--color-icon-tertiary);"></i>
+                <input type="text" placeholder="搜索模组..." class="flex-1 text-sm bg-transparent outline-none" style="color: var(--color-on-surface); font-family: var(--font-family-default);">
+              </div>
+              <!-- Filter Buttons -->
+              <div class="flex items-center gap-1">
+                <button class="px-3 py-2 rounded-lg text-xs font-medium transition-colors" style="background: var(--color-primary); color: var(--color-on-primary);">全部</button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">方块</button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">生物</button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">世界</button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">工具</button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium transition-colors hover:bg-[var(--color-overlay-1)]" style="color: var(--color-on-surface-variant);">科技</button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Content Body -->
+          <div class="flex-1 overflow-auto p-8">
+
+            <!-- Featured Mod Banner -->
+            <div class="relative rounded-xl overflow-hidden mb-8" style="height: 200px;">
+              <img src="../assets/image_1_yi19x4.jpg" alt="Mod Showcase" class="w-full h-full object-cover">
+              <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(75,63,227,0.85) 0%, rgba(26,23,89,0.7) 100%);"></div>
+              <div class="absolute inset-0 flex items-center px-8">
+                <div class="flex items-center justify-between w-full">
+                  <div>
+                    <span class="inline-block px-2.5 py-1 rounded-md text-xs font-medium text-white mb-3" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);">本周精选</span>
+                    <h2 class="text-2xl font-bold text-white mb-1" style="font-family: var(--font-family-heading);">优化光影包 OptiFine Ultra</h2>
+                    <div class="flex items-center gap-2 text-sm" style="color: rgba(255,255,255,0.8);">
+                      <i data-lucide="download" class="w-4 h-4"></i>
+                      <span>1.2M 下载</span>
+                    </div>
+                  </div>
+                  <button class="px-6 py-2.5 rounded-lg text-sm font-medium text-white transition-colors" style="background: var(--color-bg-brand-hover);">
+                    安装
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mod Grid -->
+            <div class="grid grid-cols-3 gap-5">
+
+              <!-- Mod Card 1: JEI 物品管理器 - Nature/Green -->
+              <div class="mod-card rounded-xl border overflow-hidden cursor-pointer" style="background: var(--color-background); border-color: var(--color-border); border-left: 4px solid #15a877;">
+                <div class="p-4">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #15a877, #2fb287);">
+                      <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-sm font-semibold truncate" style="color: var(--color-on-surface);">JEI 物品管理器</h3>
+                      <p class="text-xs mt-0.5" style="color: var(--color-muted-foreground);">mezz</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background: rgba(21,168,119,0.12); color: #15a877;">工具</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-0.5">
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-empty text-xs">&#9733;</span>
+                      </div>
+                      <span class="text-xs ml-1" style="color: var(--color-muted-foreground);">4.0</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i data-lucide="download" class="w-3.5 h-3.5" style="color: var(--color-icon-tertiary);"></i>
+                      <span class="text-xs" style="color: var(--color-muted-foreground);">3.8M</span>
+                    </div>
+                  </div>
+                  <button class="w-full mt-3 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-on-surface-variant);">安装</button>
+                </div>
+              </div>
+
+              <!-- Mod Card 2: Create 机械动力 - Tech/Blue -->
+              <div class="mod-card rounded-xl border overflow-hidden cursor-pointer" style="background: var(--color-background); border-color: var(--color-border); border-left: 4px solid #2f74ff;">
+                <div class="p-4">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2f74ff, #4c88ff);">
+                      <i data-lucide="cog" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-sm font-semibold truncate" style="color: var(--color-on-surface);">Create 机械动力</h3>
+                      <p class="text-xs mt-0.5" style="color: var(--color-muted-foreground);">simibubi</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background: rgba(47,116,255,0.12); color: #2f74ff;">科技</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-0.5">
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                      </div>
+                      <span class="text-xs ml-1" style="color: var(--color-muted-foreground);">4.9</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i data-lucide="download" class="w-3.5 h-3.5" style="color: var(--color-icon-tertiary);"></i>
+                      <span class="text-xs" style="color: var(--color-muted-foreground);">5.2M</span>
+                    </div>
+                  </div>
+                  <button class="w-full mt-3 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-on-surface-variant);">安装</button>
+                </div>
+              </div>
+
+              <!-- Mod Card 3: Sodium 渲染优化 - Nature/Green -->
+              <div class="mod-card rounded-xl border overflow-hidden cursor-pointer" style="background: var(--color-background); border-color: var(--color-border); border-left: 4px solid #15a877;">
+                <div class="p-4">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #1e8b56, #2fb287);">
+                      <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-sm font-semibold truncate" style="color: var(--color-on-surface);">Sodium 渲染优化</h3>
+                      <p class="text-xs mt-0.5" style="color: var(--color-muted-foreground);">jellysquid3</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background: rgba(21,168,119,0.12); color: #15a877;">工具</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-0.5">
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                      </div>
+                      <span class="text-xs ml-1" style="color: var(--color-muted-foreground);">4.8</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i data-lucide="download" class="w-3.5 h-3.5" style="color: var(--color-icon-tertiary);"></i>
+                      <span class="text-xs" style="color: var(--color-muted-foreground);">8.1M</span>
+                    </div>
+                  </div>
+                  <button class="w-full mt-3 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-on-surface-variant);">安装</button>
+                </div>
+              </div>
+
+              <!-- Mod Card 4: Iris 光影 - Tech/Blue -->
+              <div class="mod-card rounded-xl border overflow-hidden cursor-pointer" style="background: var(--color-background); border-color: var(--color-border); border-left: 4px solid #2f74ff;">
+                <div class="p-4">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #1071cb, #64b4ff);">
+                      <i data-lucide="sun" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-sm font-semibold truncate" style="color: var(--color-on-surface);">Iris 光影</h3>
+                      <p class="text-xs mt-0.5" style="color: var(--color-muted-foreground);">IrisShaders</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background: rgba(47,116,255,0.12); color: #2f74ff;">科技</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-0.5">
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-empty text-xs">&#9733;</span>
+                      </div>
+                      <span class="text-xs ml-1" style="color: var(--color-muted-foreground);">4.5</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i data-lucide="download" class="w-3.5 h-3.5" style="color: var(--color-icon-tertiary);"></i>
+                      <span class="text-xs" style="color: var(--color-muted-foreground);">4.6M</span>
+                    </div>
+                  </div>
+                  <button class="w-full mt-3 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-on-surface-variant);">安装</button>
+                </div>
+              </div>
+
+              <!-- Mod Card 5: Xaero 小地图 - World/Green -->
+              <div class="mod-card rounded-xl border overflow-hidden cursor-pointer" style="background: var(--color-background); border-color: var(--color-border); border-left: 4px solid #00b983;">
+                <div class="p-4">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #00b983, #40b08b);">
+                      <i data-lucide="map" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-sm font-semibold truncate" style="color: var(--color-on-surface);">Xaero 小地图</h3>
+                      <p class="text-xs mt-0.5" style="color: var(--color-muted-foreground);">xaero96</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background: rgba(0,185,131,0.12); color: #00b983;">世界</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-0.5">
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-empty text-xs">&#9733;</span>
+                      </div>
+                      <span class="text-xs ml-1" style="color: var(--color-muted-foreground);">4.3</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i data-lucide="download" class="w-3.5 h-3.5" style="color: var(--color-icon-tertiary);"></i>
+                      <span class="text-xs" style="color: var(--color-muted-foreground);">2.9M</span>
+                    </div>
+                  </div>
+                  <button class="w-full mt-3 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-on-surface-variant);">安装</button>
+                </div>
+              </div>
+
+              <!-- Mod Card 6: Architectury 架构 API - Tech/Blue -->
+              <div class="mod-card rounded-xl border overflow-hidden cursor-pointer" style="background: var(--color-background); border-color: var(--color-border); border-left: 4px solid #7864ff;">
+                <div class="p-4">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #4c37e6, #a599ff);">
+                      <i data-lucide="box" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="text-sm font-semibold truncate" style="color: var(--color-on-surface);">Architectury 架构 API</h3>
+                      <p class="text-xs mt-0.5" style="color: var(--color-muted-foreground);">shedaniel</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background: rgba(120,100,255,0.12); color: #7864ff;">科技</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1">
+                      <div class="flex items-center gap-0.5">
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-filled text-xs">&#9733;</span>
+                        <span class="star-empty text-xs">&#9733;</span>
+                      </div>
+                      <span class="text-xs ml-1" style="color: var(--color-muted-foreground);">4.2</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i data-lucide="download" class="w-3.5 h-3.5" style="color: var(--color-icon-tertiary);"></i>
+                      <span class="text-xs" style="color: var(--color-muted-foreground);">6.7M</span>
+                    </div>
+                  </div>
+                  <button class="w-full mt-3 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors hover:bg-[var(--color-overlay-1)]" style="border-color: var(--color-border); color: var(--color-on-surface-variant);">安装</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Sidebar Panel -->
+        <aside class="w-[280px] min-h-screen border-l overflow-auto flex flex-col" style="border-color: var(--color-border); background: var(--color-surface);">
+
+          <!-- Installed Mods Section -->
+          <div class="px-5 py-5">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-sm font-semibold" style="font-family: var(--font-family-heading); color: var(--color-on-surface);">已安装模组</h2>
+              <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-medium text-white" style="background: var(--color-primary);">12</span>
+            </div>
+
+            <!-- Installed Mod List -->
+            <div class="flex flex-col gap-2.5">
+
+              <!-- Installed Mod 1 -->
+              <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg" style="background: var(--color-background);">
+                <div class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #15a877, #2fb287);">
+                  <i data-lucide="zap" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-xs font-medium truncate" style="color: var(--color-on-surface);">Sodium</div>
+                  <div class="text-[10px]" style="color: var(--color-muted-foreground);">v0.5.8</div>
+                </div>
+                <div class="toggle-switch on"></div>
+              </div>
+
+              <!-- Installed Mod 2 -->
+              <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg" style="background: var(--color-background);">
+                <div class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #1071cb, #64b4ff);">
+                  <i data-lucide="sun" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-xs font-medium truncate" style="color: var(--color-on-surface);">Iris Shaders</div>
+                  <div class="text-[10px]" style="color: var(--color-muted-foreground);">v1.7.2</div>
+                </div>
+                <div class="toggle-switch on"></div>
+              </div>
+
+              <!-- Installed Mod 3 -->
+              <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg" style="background: var(--color-background);">
+                <div class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #2f74ff, #4c88ff);">
+                  <i data-lucide="cog" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-xs font-medium truncate" style="color: var(--color-on-surface);">Create</div>
+                  <div class="text-[10px]" style="color: var(--color-muted-foreground);">v0.5.1f</div>
+                </div>
+                <div class="toggle-switch off"></div>
+              </div>
+
+              <!-- Installed Mod 4 -->
+              <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg" style="background: var(--color-background);">
+                <div class="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #00b983, #40b08b);">
+                  <i data-lucide="map" class="w-4 h-4 text-white"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-xs font-medium truncate" style="color: var(--color-on-surface);">Xaero Minimap</div>
+                  <div class="text-[10px]" style="color: var(--color-muted-foreground);">v24.0.3</div>
+                </div>
+                <div class="toggle-switch on"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Spacer -->
+          <div class="flex-1"></div>
+
+          <!-- Compatibility Check -->
+          <div class="px-5 pb-6 pt-4 border-t" style="border-color: var(--color-border);">
+            <h2 class="text-xs font-semibold mb-3" style="color: var(--color-on-surface-variant);">兼容性检查</h2>
+            <div class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg" style="background: rgba(21,168,119,0.08);">
+              <svg class="w-4 h-4 flex-shrink-0" style="color: #15a877;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <span class="text-xs font-medium" style="color: #15a877;">全部兼容</span>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

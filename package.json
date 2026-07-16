@@ -1,0 +1,71 @@
+{
+  "name": "craft-launcher",
+  "version": "1.0.0",
+  "description": "Minecraft Launcher - Craft Launcher",
+  "author": "CraftLauncher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:nsis": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.18"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.craftlauncher.app",
+    "productName": "Craft Launcher",
+    "directories": {
+      "output": "D:\\luncher"
+    },
+    "asar": true,
+    "icon": "resources/icon/icon.ico",
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "package.json",
+      "src/**/*",
+      "assets/**/*",
+      "resources/**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}"
+    ],
+    "win": {
+      "target": [
+        "nsis-web"
+      ],
+      "compression": "maximum",
+      "sign": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Craft Launcher",
+      "deleteAppDataOnUninstall": true
+    },
+    "nsisWeb": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Craft Launcher"
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://example.com/craftlauncher/"
+    }
+  }
+}

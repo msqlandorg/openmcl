@@ -1,0 +1,47 @@
+{
+  "name": "craft-launcher",
+  "version": "1.0.0",
+  "description": "Minecraft Launcher - Craft Launcher",
+  "author": "CraftLauncher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:nsis": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.18"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.craftlauncher.app",
+    "productName": "Craft Launcher",
+    "directories": {
+      "output": "output"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "package.json",
+      "src/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "compression": "maximum"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Craft Launcher"
+    }
+  }
+}
