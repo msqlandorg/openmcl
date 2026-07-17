@@ -3,10 +3,10 @@ const http = require('http');
 const crypto = require('crypto');
 const { getSettings, saveSettings } = require('./settings');
 
-const REDIRECT_PORT = 29573;
-const REDIRECT_URI = `http://localhost:${REDIRECT_PORT}/callback`;
-const CLIENT_ID = '7eb548a1-89e6-4939-b662-e9945bc5c9cd';
-const SCOPE = 'XboxLive.signin offline_access';
+const REDIRECT_PORT = xxxxx;
+const REDIRECT_URI = `your-https`;
+const CLIENT_ID = 'your-id';
+const SCOPE = 'your want';
 
 function generateCodeVerifier() {
   return crypto.randomBytes(32).toString('base64url').replace(/[^a-zA-Z0-9\-_]/g, '');
